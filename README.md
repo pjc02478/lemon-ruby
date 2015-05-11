@@ -3,7 +3,7 @@
 ```ruby
 handle = Microthread::create do
   puts "begin task"
-  Flowcontrol::delayt TimeUnit::Second.new(1)
+  Flowcontrol::delayt TimeUnit::second(1.0)
   puts "after 1 second"
 end
 
