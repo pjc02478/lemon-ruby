@@ -6,9 +6,9 @@ module Dispatcher
     attr_reader :sig
     attr_accessor :remain, :last
 
-    def initialize timeunit
+    def initialize s
       @sig = Flowcontrol::Signal.new
-      @remain = timeunit.to_s
+      @remain = s
       @last = Time.now.to_f
     end
   end
