@@ -10,6 +10,7 @@ module Flowcontrol
     def notify_one
       return false if waiting_contexts.empty?
 
+      waiting_contexts.pop.schedule
       return true
     end
     def notify_all
@@ -20,8 +21,13 @@ module Flowcontrol
   end
 
   def self.delay timeunit
-    
+    t = Dispatcher::Timer.new timeunit
+    Dispatcher::add_timer t
+    self.delay_until t.sig
   end
   def self.delay_until signal
+    current = Microthread::current
+    signal.waiting_contexts.push current
+    current.yield
   end
 end
