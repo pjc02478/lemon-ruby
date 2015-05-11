@@ -20,8 +20,8 @@ module Flowcontrol
     end
   end
 
-  def self.delay timeunit
-    t = Dispatcher::Timer.new timeunit
+  def self.delay s
+    t = Dispatcher::Timer.new s
     Dispatcher::add_timer t
     self.delay_until t.sig
   end
